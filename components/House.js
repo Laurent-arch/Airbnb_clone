@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-const House = (props) => {
+export default function House(props) {
   return (
+    <>
     <Link href="/houses/[id]" as={"/houses/" + props.id}>
       <a>
         <img src={props.picture} width="100%" alt="House picture" />
@@ -9,12 +10,15 @@ const House = (props) => {
           {props.type} - {props.town}
         </p>
         <p>{props.title}</p>
-        <p>
-          {props.rating} ({props.reviewsCount})
-        </p>
       </a>
+      
     </Link>
+    <style jsx>{`
+        a {
+          text-decoration: none;
+        }
+      `}</style>
+    </>
   );
-};
-
-export default House;
+  
+}
