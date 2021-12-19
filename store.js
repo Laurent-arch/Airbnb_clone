@@ -1,25 +1,31 @@
 import { createStore, action } from 'easy-peasy'
 
 export default createStore({
+  login: {
+    loggedIn: false,
+    setLoggedIn: action((state) => {
+      state.loggedIn = true;
+    }),
+  },
   modals: {
     showModal: false,
     showLoginModal: false,
     showRegistrationModal: false,
     setShowModal: action((state) => {
-      state.showModal = true
+      state.showModal = true;
     }),
     setHideModal: action((state) => {
-      state.showModal = false
+      state.showModal = false;
     }),
     setShowLoginModal: action((state) => {
-      state.showModal = true
-      state.showLoginModal = true
-      state.showRegistrationModal = false
+      state.showModal = true;
+      state.showLoginModal = true;
+      state.showRegistrationModal = false;
     }),
     setShowRegistrationModal: action((state) => {
-      state.showModal = true
-      state.showLoginModal = false
-      state.showRegistrationModal = true
-    })
-  }
-})
+      state.showModal = true;
+      state.showLoginModal = false;
+      state.showRegistrationModal = true;
+    }),
+  },
+});
