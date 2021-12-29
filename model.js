@@ -43,4 +43,50 @@ User.prototype.isPasswordValid = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-export { sequelize, User };
+class House extends Sequelize.Model {}
+
+House.init(
+  {
+    id: {
+      type: Sequelize.DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    picture: { type: Sequelize.DataTypes.STRING, allowNull: false },
+    type: { type: Sequelize.DataTypes.STRING, allowNull: false },
+    town: { type: Sequelize.DataTypes.STRING, allowNull: false },
+    title: { type: Sequelize.DataTypes.STRING, allowNull: false },
+    price: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
+    owner: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
+  },
+  {
+    sequelize,
+    modelName: "house",
+    timestamps: false,
+  }
+);
+
+class Booking extends Sequelize.Model {}
+
+Booking.init(
+  {
+    id: {
+      type: Sequelize.DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    houseId: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
+    userId: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
+    startDate: { type: Sequelize.DataTypes.DATEONLY, allowNull: false },
+    endDate: { type: Sequelize.DataTypes.DATEONLY, allowNull: false },
+  },
+  {
+    sequelize,
+    modelName: "booking",
+    timestamps: true,
+  }
+);
+
+Booking.sync({ alter: true });
+
+export { sequelize, User, House, Booking };
